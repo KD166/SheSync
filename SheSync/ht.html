@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SheSync App</title>
+    <link rel="stylesheet" href="cs.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+
+
+
+<div class="device-frame">
+    <div class="app-container">
+       
+        <header class="navbar">
+            <div class="logo">SHESYNC</div>
+            <nav class="nav-menu">
+                <div class="nav-item active" onclick="showScreen('home')">Início<span class="active-dot"></span></div>
+                <div class="nav-item" onclick="showScreen('locais')">Locais</div>
+                <div class="nav-item" onclick="showScreen('horarios')">Horários</div>
+                <div class="nav-item" onclick="showScreen('config')">Config</div>
+            </nav>
+            <div class="nav-icons">
+                <button class="icon-btn" onclick="showScreen('perfil')"><i class="fas fa-user-circle"></i></button>
+                <button class="icon-btn" id="menuBtn" onclick="showScreen('autoridades')"><i class="fas fa-shield-alt"></i></button>
+            </div>
+        </header>
+
+
+
+
+        <section id="config" class="screen">
+    <div class="settings-list">
+        <div class="setting-item">
+            <i class="fas fa-universal-access"></i>
+            <span>Acessibilidade</span>
+        </div>
+        <div class="setting-item">
+            <i class="fas fa-bell"></i>
+            <span>Notificações</span>
+        </div>
+        <div class="setting-item">
+            <i class="fas fa-volume-up"></i>
+            <span>Sons</span>
+        </div>
+        <div class="setting-item">
+            <i class="fas fa-shield-alt"></i>
+            <span>Biometria e Segurança</span>
+        </div>
+        <div class="setting-item">
+            <i class="fas fa-user-circle"></i>
+            <span>Minha conta</span>
+        </div>
+        <div class="setting-item">
+            <i class="fas fa-key"></i>
+            <span>Chaves de Acesso</span>
+        </div>
+    </div>
+</section>
+
+
+
+
+        <section id="home" class="screen active">
+                <div class="hero">
+                    <h1>Olá, você está no SheSync</h1>
+                    <div class="search-box">
+    <input type="text" placeholder="O que você procura hoje?">
+    <button type="submit">🔍︎</button>
+</div>
+                </div>
+                <div class="news-section">
+                    <div class="section-title">
+                        <div class="bar"></div>
+                        <h2>Notícias em destaque</h2>
+                    </div>
+                    <div class="news-list">
+                        <article class="card clickable" onclick="window.open('https://g1.globo.com/politica/noticia/2026/03/04/metade-dos-feminicidios-no-brasil-ocorre-em-cidades-de-ate-100-mil-habitantes-diz-pesquisa.ghtml')">
+                            <img src="https://s2-g1.glbimg.com/dOO_2K4wm2HuFmXki7ZXxE1Mrog=/0x0:6000x4000/1000x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2025/P/U/wApz1OSmKp6VdpQicnoA/mcm-5753-0.jpg" alt="Notícia G1">
+                            <div class="card-content">
+                                <h3>G1 - Política</h3>
+                                <p>Feminicídios em cidades de pequeno porte no Brasil.</p>
+                            </div>
+                        </article>
+
+
+
+
+                        <article class="card clickable" onclick="window.open('https://www.gov.br/pt-br/servicos/denunciar-e-buscar-ajuda-a-vitimas-de-violencia-contra-mulheres')">
+                            <img src="https://caiosalgadoscs.com.br/wp-content/uploads/2021/08/Design-sem-nome-26-780x470.jpg" alt="Gov.br">
+                            <div class="card-content">
+                                <h3>Gov.br</h3>
+                                <p>Denunciar e buscar ajuda a vítimas de violência (Ligue 180).</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+
+
+
+        <section id="locais" class="screen">
+            <div class="map-area">
+                <iframe class="google-map" src="https://www.openstreetmap.org/export/embed.html?bbox=-35.0345%2C-8.1561%2C-34.8142%2C-7.9625&layer=mapnik"></iframe>
+                <button class="fab-btn" onclick="alert('Localização enviada!')">▲</button>
+            </div>
+        </section>
+
+
+
+
+        <section id="horarios" class="screen">
+    <div class="schedule-container">
+        <div class="status-card">
+            <p><i class="fas fa-map-marker-alt"></i> <strong>Última localização:</strong> Casa</p>
+            <p><i class="fas fa-history"></i> <strong>Último check-in:</strong> <span id="lastCheck">Pendente</span></p>
+        </div>
+
+
+        <h2>Minha Grade de Segurança</h2>
+
+
+        <div class="add-schedule-form" style="margin-bottom: 20px; padding: 15px; background: #f4f4f4; border-radius: 8px;">
+            <select id="newDay">
+                <option value="Segunda">Segunda</option>
+                <option value="Terça">Terça</option>
+                <option value="Quarta">Quarta</option>
+                <option value="Quinta">Quinta</option>
+                <option value="Sexta">Sexta</option>
+                <option value="Sábado">Sábado</option>
+                <option value="Domingo">Domingo</option>
+            </select>
+            <input type="time" id="newTime">
+            <input type="text" id="newLocation" placeholder="Ex: Faculdade">
+            <button onclick="addSchedule()" class="check-btn" style="background-color: #28a745;">Adicionar</button>
+        </div>
+
+
+        <table class="schedule-table" id="scheduleTable">
+            <thead>
+                <tr>
+                    <th>Dia</th>
+                    <th>Hora</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Segunda</td>
+                    <td>07:30</td>
+                    <td><button class="check-btn">Casa: Fazer Check-in</button></td>
+                </tr>
+                <tr>
+                    <td>Segunda</td>
+                    <td>08:30</td>
+                    <td><button class="check-btn">Trabalho: Fazer Check-in</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+
+
+
+        <section id="perfil" class="screen">
+            <div class="profile-header">
+                <div class="avatar-large">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h2>Lucia Santos</h2>
+                <p>34 anos</p>
+            </div>
+
+
+
+
+            <div class="profile-info">
+                <div class="info-row">
+                    <span><strong>Endereço:</strong> Rua da Aurora</span>
+                    <i class="fas fa-eye"></i>
+                </div>
+                <div class="info-row">
+                    <span><strong>Contato:</strong> ••••••••</span>
+                    <i class="fas fa-eye-slash"></i>
+                </div>
+            </div>
+
+
+
+
+            <div class="contacts-grid-section">
+                <h3>Meus Protetores:</h3>
+                <div class="avatar-grid">
+                    <div class="avatar-item"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Mom" alt="Mãe"><span>Mãe</span></div>
+                    <div class="avatar-item"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Sister" alt="Irmã"><span>Irmã</span></div>
+                    <div class="avatar-item"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Friend" alt="Amiga"><span>Amiga</span></div>
+                </div>
+
+
+
+
+                <h3>Protegidos:</h3>
+                <div class="avatar-grid">
+                    <div class="avatar-item"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Kid" alt="Sobrinha"><span>Sobrinha</span></div>
+                    <div class="avatar-item"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Grandma" alt="Avó"><span>Avó</span></div>
+                </div>
+            </div>
+        </section>
+           
+        <section id="autoridades" class="screen">
+            <div class="profile-bar">
+                <div class="avatar-circle"><i class="fas fa-shield-alt"></i></div>
+                <span>Polícia Local</span>
+            </div>
+            <div class="chat-area">
+                <div class="message-bubble">Como podemos ajudar agora?</div>
+                <button class="btn-start-chat" id="startChat">Iniciar Chat Real</button>
+            </div>
+        </section>
+
+
+
+
+    </div> </div> <script src="script.js"></script>
+
+
+
+</body>
+</html>
+
+
+<script src="script.js"></script>
+</body>
+</html>
